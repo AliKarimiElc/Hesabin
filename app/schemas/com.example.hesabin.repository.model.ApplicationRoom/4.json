@@ -1,0 +1,126 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 4,
+    "identityHash": "547ca7b8f1b41ead51917eeacd540841",
+    "entities": [
+      {
+        "tableName": "TransactionCategory",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `Parent_Cat_Id` INTEGER, `description` TEXT, FOREIGN KEY(`Parent_Cat_Id`) REFERENCES `TransactionCategory`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "parentCategoryId",
+            "columnName": "Parent_Cat_Id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_TransactionCategory_Parent_Cat_Id",
+            "unique": false,
+            "columnNames": [
+              "Parent_Cat_Id"
+            ],
+            "createSql": "CREATE  INDEX `index_TransactionCategory_Parent_Cat_Id` ON `${TABLE_NAME}` (`Parent_Cat_Id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "TransactionCategory",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "Parent_Cat_Id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "AccountTransaction",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` INTEGER, `description` TEXT, `Cat_Id` INTEGER, FOREIGN KEY(`Cat_Id`) REFERENCES `TransactionCategory`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "categoryId",
+            "columnName": "Cat_Id",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_AccountTransaction_Cat_Id",
+            "unique": false,
+            "columnNames": [
+              "Cat_Id"
+            ],
+            "createSql": "CREATE  INDEX `index_AccountTransaction_Cat_Id` ON `${TABLE_NAME}` (`Cat_Id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "TransactionCategory",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "Cat_Id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '547ca7b8f1b41ead51917eeacd540841')"
+    ]
+  }
+}

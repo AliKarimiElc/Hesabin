@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="viewModel" type="com.example.hesabin.feature.showAccountBalance.AccountBalanceViewModel"/>
+    </data>
+
+    <RelativeLayout
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+                app:cardCornerRadius="15dp"
+                android:id="@+id/balanceCard"
+                android:layout_margin="8dp"
+                android:background="@drawable/card_view_main"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <RelativeLayout
+                    android:background="@drawable/card_view_main"
+                    android:padding="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <RelativeLayout
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/balanceLayout"
+                        android:padding="16dp"
+                        android:background="@drawable/circle_text_view_none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <TextView
+                            android:layout_centerHorizontal="true"
+                            android:textAlignment="center"
+                            android:textDirection="rtl"
+                            android:text="موجودی"
+                            android:id="@+id/balanceLabel"
+                            android:textColor="@color/colorDarkText"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    <TextView
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_below="@+id/balanceLabel"
+                            android:textDirection="rtl"
+                            android:text="@{String.valueOf(viewModel.accountBalanceAmount)}"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorDarkText"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/balanceTextView"/>
+                </RelativeLayout>
+
+                <TableLayout
+                        android:padding="3dp"
+                        android:layout_margin="8dp"
+                        android:layout_below="@id/balanceLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <TableRow
+                            android:padding="8dp"
+                            android:layoutDirection="rtl"
+                            android:background="@color/colorTextWhite"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+
+                        <TextView
+                                android:layout_marginEnd="16dp"
+                                android:textColor="@color/colorTextRed"
+                                android:textSize="18sp"
+                                android:id="@+id/paymentSumLabel"
+                                android:text="جمع پرداخت های این ماه :"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        <TextView
+                                android:textColor="@color/colorTextRed"
+                                android:textSize="18sp"
+                                android:id="@+id/paymentSumView"
+                                android:text="46546564"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                    </TableRow>
+
+                    <TableRow
+                            android:padding="8dp"
+                            android:layoutDirection="rtl"
+                            android:background="@color/colorTextWhite"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+
+                        <TextView
+                                android:layout_marginEnd="8dp"
+                                android:textColor="@color/colorTextGreen"
+                                android:textSize="18sp"
+                                android:id="@+id/receiveSumLabel"
+                                android:text="جمع دریافت های این ماه :"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        <TextView
+                                android:textColor="@color/colorTextGreen"
+                                android:textSize="18sp"
+                                android:id="@+id/receiveSumView"
+                                android:text="46546564"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                    </TableRow>
+
+                </TableLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+                app:cardCornerRadius="15dp"
+                android:layout_margin="8dp"
+                android:layout_below="@+id/balanceCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <RelativeLayout
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <Button
+                        android:onClick="@{ viewModel::onRegisterClick}"
+                        android:id="@+id/paymentButton"
+                        android:layout_alignParentEnd="true"
+                        android:text="پرداخت"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <Button
+                        android:id="@+id/ReceiveButton"
+                        android:layout_marginEnd="8dp"
+                        android:layout_toStartOf="@+id/paymentButton"
+                        android:text="دریافت"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</layout>
