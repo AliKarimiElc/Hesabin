@@ -1,0 +1,1 @@
+This is a Android application for simple accounting. That i have been developing it with kotlin language in android studio
